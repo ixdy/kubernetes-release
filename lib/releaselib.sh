@@ -466,9 +466,14 @@ release::gcs::prepare_for_copy() {
 
   logecho "- Checking whether $gcs_destination already exists..."
   if $GSUTIL ls $gcs_destination >/dev/null 2>&1 ; then
-    logecho "- Destination exists. To remove, run:"
-    logecho -n "  gsutil -m rm -r $gcs_destination\n"
-    return 1
+    if ((FLAGS_delete_existing)); then
+      logrun $GSUTIL -m rm -r $gcs_destination || return 1
+    else
+      logecho "- Destination exists. To remove, run this script again with"\
+              "--delete-existing, or run:"
+      logecho -n "  gsutil -m rm -r $gcs_destination\n"
+      return 1
+    fi
   fi
 }
 

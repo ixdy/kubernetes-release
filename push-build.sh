@@ -49,6 +49,7 @@ PROG=${0##*/}
 #+     [--gcs-suffix=]           - Specify a suffix to append to the upload
 #+                                 destination on GCS.
 #+     [--version-suffix=]       - Append suffix to version name if set.
+#+     [--delete-existing]       - Delete existing release on GCS if it exists
 #+     [--noupdatelatest]        - Do not update the latest file
 #+     [--help | -man]           - display man page for this script
 #+     [--usage | -?]            - display in-line usage
